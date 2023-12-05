@@ -3,7 +3,6 @@ import { DOMSelect } from './dom';
 // fetch api
 const proxy = 'https://corsproxy.io/?'; // ik we werent supposed to use cors apis but i really wanted to make this project
 const routesApi = 'https://bustime.mta.info/routes/';
-const stopsApi = `https://bustime.mta.info/api/stops-on-route-for-direction?routeId=MTA+NYCT_B1&directionId=1`;
 
 // all buses list; html webpage parsing bc i couldnt find api
 async function getOptions(){
@@ -24,7 +23,6 @@ function fetchToHtml(data){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busList = list.querySelectorAll('ul.routeList li'); // parse fetched site
-        console.log(busList);
         busList.forEach(item => optionList(item)); // for each parsed node
 }
 
@@ -40,16 +38,3 @@ function optionList(res){
     ` // 2
     ); 
 }
-async function getApi(url){ // fetch stops api
-    try{
-        const response = await fetch(proxy+url);
-        const data = await response.json();
-        console.log(data);
-        if(response.status != 200){
-            throw new Error(response.statusText);
-        }
-    } catch (error){
-        console.log(error, "API Error");
-    }
-}
-getApi(stopsApi);

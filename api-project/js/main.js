@@ -1,6 +1,7 @@
 import '../css/style.css';
 import '../css/variables.css';
-import './api';
+import './buses';
+import './stops';
 import { DOMSelect } from './dom';
 
 DOMSelect.themer.addEventListener("click", function(){ // theme
@@ -12,16 +13,13 @@ DOMSelect.themer.addEventListener("click", function(){ // theme
 }
 );
 
-DOMSelect.submitBus.addEventListener("click", function(event){
-    event.preventDefault();
-}
-);
+
 
 /* function xpathE(expression){ // idk if this works but i prefer xpath over domselectors
     const xpath = expression;
     const evaluator = new XPathEvaluator();
     const exp = evaluator.createExpression(xpath);
-    const result = exp.evaluate(document, XPathResult.ANY_TYPE);
+    const result = exp.evaluate(document, XPathResult.ORDERED_NODE_ITERATOR_TYPE);
     return result;
 }
 console.log(xpathE('//h1')); */

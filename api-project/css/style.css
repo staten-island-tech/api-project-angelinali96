@@ -34,8 +34,15 @@ h5{
   text-align: center;
   font-size: var(--h5);
 }
-select{
-  width: 45vw;
+#buses1,
+#buses2,
+#stops1,
+#stops2{
+  width: 40vw;
+  height: 3vh;
+}
+.direction{
+  width: 5vw;
 }
 .filter{
     display: flex;
