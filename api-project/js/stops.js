@@ -3,12 +3,18 @@ import './buses';
 
 const proxy = 'https://corsproxy.io/?'; // ik we werent supposed to use cors apis but i really wanted to make this project
 
-async function getApi(stop, direction){ // fetch stops api
+async function getApi(stop, direction, instance){ // fetch stops api
     try{
         const stopsApi = `https://bustime.mta.info/api/stops-on-route-for-direction?routeId=MTA+NYCT_${stop}&directionId=${direction}`;
         const response = await fetch(proxy+stopsApi);
         const data = await response.json();
-        console.log(data.stops);
+        const stops = data.stops;
+        stops.forEach(element => {
+            DOMSelect.stops[instance].insertAdjacentHTML("afterbegin", `
+    <option value="${element.id}">${element.name}</option>
+    ` 
+    );
+        });
         if(response.status != 200){
             throw new Error(response.statusText);
         }
@@ -16,9 +22,9 @@ async function getApi(stop, direction){ // fetch stops api
         console.log(error, "API Error");
     }
 }
-DOMSelect.submitBus.addEventListener("click", function(event){
+DOMSelect.submitBus.addEventListener("submit", function(event){
     event.preventDefault();
-    getApi(DOMSelect.options1.value, DOMSelect.direction1.value);
-    getApi(DOMSelect.options2.value, DOMSelect.direction2.value);
+    getApi(DOMSelect.options1.value, DOMSelect.direction1.value, 0);
+    getApi(DOMSelect.options2.value, DOMSelect.direction2.value, 1);
 }
 );
