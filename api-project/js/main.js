@@ -13,7 +13,7 @@ DOMSelect.themer.addEventListener("click", function(){ // theme
     }
 }
 );
-
+const proxy = 'https://corsproxy.io/?';
 
 
 /* function xpathE(expression){ // idk if this works but i prefer xpath over domselectors
@@ -28,4 +28,3 @@ console.log(xpathE('//h1')); */
 // bus api;  double screen
 // https://bustime.mta.info/api/stops-on-route-for-direction?routeId=MTA+NYCT_B8&directionId=1
 // fetch id and fill https://bustime.mta.info/m/index?q= id
-// route list https://bustime.mta.info/m/routes/

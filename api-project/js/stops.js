@@ -9,9 +9,10 @@ async function getApi(stop, direction, instance){ // fetch stops api
         const response = await fetch(proxy+stopsApi);
         const data = await response.json();
         const stops = data.stops;
+        DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
         stops.forEach(element => {
             DOMSelect.stops[instance].insertAdjacentHTML("afterbegin", `
-    <option value="${element.id}">${element.name}</option>
+    <option value="${element.id.replace('MTA_', '')}">${element.name}</option>
     ` 
     );
         });

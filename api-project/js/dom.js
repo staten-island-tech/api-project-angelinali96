@@ -6,6 +6,7 @@ const DOMSelect = {
     direction2: document.getElementById('direction2'),
     options2: document.getElementById('buses2'),
     stops: [document.getElementById('stops1'), document.getElementById('stops2')],
+    timeRes: [document.getElementById('time1'), document.getElementById('time2')],
     submitBus: document.getElementById('busSubmit'),
     themer: document.querySelector('input[type="checkbox"]'),
 };
