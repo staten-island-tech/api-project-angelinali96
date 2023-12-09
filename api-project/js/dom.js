@@ -1,14 +1,21 @@
+
 const DOMSelect = {
-    body: document.querySelector('body'),
-    res: document.querySelector('.result'),
-    options1: document.getElementById('buses1'),
-    direction1: document.getElementById('direction1'),
-    direction2: document.getElementById('direction2'),
-    options2: document.getElementById('buses2'),
-    stops: [document.getElementById('stops1'), document.getElementById('stops2')],
-    timeRes: [document.getElementById('time1'), document.getElementById('time2')],
-    submitBus: document.getElementById('busSubmit'),
-    themer: document.querySelector('input[type="checkbox"]'),
+    body: xpathDom('//body'),
+    res: xpathDom('//*[@class="result"]'),
+    options: [xpathDom('//select[@id="buses1"]'),xpathDom('//select[@id="buses2"]')],
+    direction: [xpathDom('//*[@id="direction1"]'), xpathDom('//*[@id="direction2"]')],
+    stops: [xpathDom('//*[@id="stops1"]'), xpathDom('//*[@id="stops2"]')],
+    timeRes: [xpathDom('//*[@id="time1"]'), xpathDom('//*[@id="time2"]')],
+    submitBus: xpathDom('//*[@id="busSubmit"]'),
+    themer: xpathDom('//input[@type="checkbox"]'),
 };
 
+function xpathDom(path) { // i like xpath i will not be using queryselector or getelementbyid again and u cant tell me otherwise
+    return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  }
+
+
+// xpathDom('')
+
+export {xpathDom};
 export {DOMSelect};

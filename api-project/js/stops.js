@@ -1,4 +1,5 @@
 import { DOMSelect } from './dom';
+import {xpathDom} from './dom';
 import './buses';
 
 const proxy = 'https://corsproxy.io/?'; // ik we werent supposed to use cors apis but i really wanted to make this project
@@ -25,7 +26,7 @@ async function getApi(stop, direction, instance){ // fetch stops api
 }
 DOMSelect.submitBus.addEventListener("submit", function(event){
     event.preventDefault();
-    getApi(DOMSelect.options1.value, DOMSelect.direction1.value, 0);
-    getApi(DOMSelect.options2.value, DOMSelect.direction2.value, 1);
+    getApi(DOMSelect.options[0].value, DOMSelect.direction[0].value, 0);
+    getApi(DOMSelect.options[1].value, DOMSelect.direction[1].value, 1);
 }
 );

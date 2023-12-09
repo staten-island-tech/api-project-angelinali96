@@ -21,9 +21,9 @@ function htmlData(data, instance){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busTimes = list.querySelectorAll('.directionAtStop'); // parse fetched site
-        console.log(busTimes); // THIS DOESNT WORK
+        console.log(list); // THIS DOESNT WORK
         DOMSelect.timeRes[instance].innerHTML = '';
-        DOMSelect.timeRes[instance].insertAdjacentHTML("afterbegin", `${busTimes}`);
+        DOMSelect.timeRes[instance].insertAdjacentHTML("afterbegin", `${list}`);
     }
 
     /* function fetchToHtml(data){

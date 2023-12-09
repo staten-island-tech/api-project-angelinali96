@@ -1,4 +1,5 @@
 import { DOMSelect } from './dom';
+import {xpathDom} from './dom';
 
 // fetch api
 const proxy = 'https://corsproxy.io/?'; // ik we werent supposed to use cors apis but i really wanted to make this project
@@ -29,11 +30,11 @@ function fetchToHtml(data){
 // display results from options
 function optionList(res){
     let list = res.querySelector('a').href.split("#", 2);
-    DOMSelect.options1.insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[0].insertAdjacentHTML("afterbegin", `
     <option value="${list[1]}">${res.innerText}</option>
     ` //insert bus routes in 1
     );
-    DOMSelect.options2.insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[1].insertAdjacentHTML("afterbegin", `
     <option value="${list[1]}">${res.innerText}</option>
     ` // 2
     ); 
