@@ -1,4 +1,4 @@
-import { DOMSelect } from './dom';
+import { DOMSelect, xpathDom } from './dom';
 import './buses';
 import './stops';
 
@@ -21,26 +21,15 @@ function htmlData(data, instance){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busTimes = list.querySelectorAll('.directionAtStop'); // parse fetched site
-        console.log(list); // THIS DOESNT WORK
         DOMSelect.timeRes[instance].innerHTML = '';
-        DOMSelect.timeRes[instance].insertAdjacentHTML("afterbegin", `${list}`);
+        busTimes.forEach(function(item){
+            item.childNodes.forEach(function(item){
+                DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`)
+            });
+        });
+    // const busHeaders = xpathDom('//p[contains(., "&nbsp;&nbsp;")]');
+    // console.log(busHeaders);
     }
-
-    /* function fetchToHtml(data){
-        const parser = new DOMParser();
-            const list = parser.parseFromString(data, "text/html");
-            const busList = list.querySelectorAll('ul.routeList li'); // parse fetched site
-            busList.forEach(res => function(res){
-                const list2 = res.querySelector('a').href.split("#", 2);
-    DOMSelect.instance[0].insertAdjacentHTML("afterbegin", `
-    <option value="${list2[1]}">${res.innerText}</option>
-    ` //insert bus routes in 1
-    );
-}
-            }); // for each parsed node
-    }
-    
-     */
 
 DOMSelect.stops[0].addEventListener("input", function(){
     if(DOMSelect.stops[0] != ''){
@@ -50,8 +39,8 @@ DOMSelect.stops[0].addEventListener("input", function(){
 );
 
 DOMSelect.stops[1].addEventListener("input", function(){
-    if(DOMSelect.stops[0] != ''){
-    insertTime(DOMSelect.stops[0].value, 1);
+    if(DOMSelect.stops[1] != ''){
+    insertTime(DOMSelect.stops[1].value, 1);
     }
 }
 );
