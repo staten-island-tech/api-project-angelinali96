@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Project</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Bustime Comparison</h1>
+      <h5>made for those who can go home on multiple bus routes</h5>
+      <div class="themer">
+        <h3>dark mode</h3>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <h3>rainbow mode</h3>
+      </div>
+      <form action="submit" id="busSubmit">
+        <select name="Select Bus" id="buses1">
+          <option value="">select bus</option>
+        </select>
+        <select name="Select Direction" id="direction1" class="direction">
+          <option value="0">0</option>
+          <option value="1">1</option>
+        </select>
+        <select name="Select Bus" id="buses2">
+          <option value="">select bus</option>
+        </select>
+        <select name="Select Direction" id="direction2" class="direction">
+          <option value="0">0</option>
+          <option value="1">1</option>
+        </select>
+        <input type="submit">
+      </form>
+      <button class="refresh">refresh</button>
+      <div class="result" id="bus1">
+        <select name="Select Stop" id="stops1">
+        </select>
+        <div class="card" id="time1"></div>
+      </div>
+      <div class="result" id="bus2">
+        <select name="Select Stop" id="stops2">
+        </select>
+        <div class="card" id="time2"></div>
+      </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
