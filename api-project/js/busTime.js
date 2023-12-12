@@ -27,8 +27,14 @@ function htmlData(data, instance){
                 DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`)
             });
         });
-    // const busHeaders = xpathDom('//p[contains(., "&nbsp;&nbsp;")]');
-    // console.log(busHeaders);
+    const busHeaders = document.querySelectorAll('p');
+    busHeaders.forEach(function(item){
+        if(item.innerText.includes('\u00A0') == true){
+            item.className = "busHead";
+            console.log(item);
+        }
+        
+    });
     }
 
 DOMSelect.stops[0].addEventListener("input", function(){
@@ -42,5 +48,16 @@ DOMSelect.stops[1].addEventListener("input", function(){
     if(DOMSelect.stops[1] != ''){
     insertTime(DOMSelect.stops[1].value, 1);
     }
+}
+);
+
+DOMSelect.refresh.addEventListener("click", function(event){
+    event.preventDefault();
+    if(DOMSelect.stops[0] != ''){
+        insertTime(DOMSelect.stops[0].value, 0);
+        }
+    if(DOMSelect.stops[1] != ''){
+        insertTime(DOMSelect.stops[1].value, 1);
+        }
 }
 );
