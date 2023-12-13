@@ -11,11 +11,20 @@ body{
     background-color: black;
     color: azure;
 }
-.result{
+form{
+  display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.results{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     align-content: center;
+}
+.result{
+    width: 49%;
 }
 h1{
     font-size: var(--h1);
@@ -44,6 +53,11 @@ h5{
 .direction{
   width: 5vw;
 }
+input[type="submit"]{
+  width: 10vw;
+  display: block;
+  text-align: center;
+}
 .filter{
     display: flex;
     justify-content: space-around;
@@ -60,7 +74,7 @@ h5{
     padding: 0.5rem;
     background-color: #1a0035;
     margin: 0.5rem 0;
-    width: 22%;
+    width: 40vw;
     height: auto;
     text-align: center;
     align-items: center;
@@ -78,42 +92,7 @@ h5{
     height: auto;
     margin: 0;
 }
-@media screen and (max-width:768px){
-    .card{
-        width: 28%;
-        height: auto;
-    }
-    .card-img{
-        width: 20vw;
-        height: auto;
-        margin: 0;
-    }
-}
-@media screen and (max-width:470px){
-    .card{
-        width: 34%;
-        height: auto;
-    }
-    .card-img{
-        width: 25vw;
-        height: auto;
-        margin: 0;
-    }
-}
-@media screen and (max-width:280px){
-    .card{
-        width: 55%;
-        height: auto;
-    }
-    .card-img{
-        width: 40vw;
-        height: auto;
-        margin: 0;
-    }
-}
-.card-img:hover{
-    transition: all 0.6s;
-}
+
 .card-title{
     font-size: 1rem;
     background-color: #1a0035;
@@ -125,10 +104,6 @@ h5{
 a{
     color: rgb(213, 255, 255);
 }
-.card:hover {
-    transition: all 0.6s;
-    transform: scale(1.1);
-  }
 button {
   border-radius: 8px;
   border: 1px solid transparent;

@@ -12,7 +12,7 @@ async function getApi(stop, direction, instance){ // fetch stops api
         const stops = data.stops;
         DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
         stops.forEach(element => {
-            DOMSelect.stops[instance].insertAdjacentHTML("afterbegin", `
+            DOMSelect.stops[instance].insertAdjacentHTML("beforeend", `
     <option value="${element.id.replace('MTA_', '')}">${element.name}</option>
     ` 
     );
