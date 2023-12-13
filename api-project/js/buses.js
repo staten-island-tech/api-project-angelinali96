@@ -40,19 +40,19 @@ function optionList(res){
     ); 
 }
 
-/* async function busDirection(bus){ // fetch stops api
+async function busDirection(bus){ // fetch stops api
     try{
         const direction = `https://bt.mta.info/api/search?q=${bus}`;
         const response = await fetch(proxy+direction);
         const data = await response.json();
         console.log(data.searchResults.matches[0].directions);
-        DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
+        /* DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
         stops.forEach(element => {
             DOMSelect.stops[instance].insertAdjacentHTML("beforeend", `
     <option value="${element.id.replace('MTA_', '')}">${element.name}</option>
     ` 
     );
-        });
+        }); */
         if(response.status != 200){
             throw new Error(response.statusText);
         }
@@ -62,7 +62,7 @@ function optionList(res){
 }
 
 busDirection('B1');
-DOMSelect.stops[0].addEventListener("input", function(){
+/* DOMSelect.stops[0].addEventListener("input", function(){
     if(DOMSelect.stops[0] != ''){
     insertTime(DOMSelect.stops[0].value, 0);
     }
