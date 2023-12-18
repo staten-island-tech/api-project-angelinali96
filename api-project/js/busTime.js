@@ -7,7 +7,7 @@ const proxy = 'https://corsproxy.io/?';
 async function insertTime(value, instance){
     const timeUrl = `https://bustime.mta.info/m/index?q=${value}`;
     try{
-        const response = await fetch(proxy+timeUrl); // fetch site
+        const response = await fetch(proxy+timeUrl, {cache: 'reload'}); // fetch site
         const data = await response.text();
         htmlData(data, instance);
         if(response.status != 200){
@@ -21,7 +21,8 @@ function htmlData(data, instance){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busTimes = list.querySelectorAll('.directionAtStop'); // parse fetched site
-        DOMSelect.timeRes[instance].innerHTML = '';
+        const refreshTime = list.querySelector('#refresh a strong');
+        DOMSelect.timeRes[instance].innerHTML = `<strong>${refreshTime.textContent}</strong>`;
         busTimes.forEach(function(item){
             item.childNodes.forEach(function(item){
                 DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`)
@@ -31,7 +32,6 @@ function htmlData(data, instance){
     busHeaders.forEach(function(item){
         if(item.innerText.includes('\u00A0') == true){
             item.className = "busHead";
-            console.log(item);
         }
         
     });
@@ -52,7 +52,9 @@ DOMSelect.stops[1].addEventListener("input", function(){
 );
 
 DOMSelect.refresh.addEventListener("click", function(event){
-    event.preventDefault();
+     event.preventDefault();
+     DOMSelect.timeRes[0].innerHTML = '';
+     DOMSelect.timeRes[1].innerHTML = '';
     if(DOMSelect.stops[0] != ''){
         insertTime(DOMSelect.stops[0].value, 0);
         }
