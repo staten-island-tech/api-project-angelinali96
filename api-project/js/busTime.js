@@ -7,7 +7,7 @@ const proxy = 'https://corsproxy.io/?';
 async function insertTime(value, instance){
     const timeUrl = `https://bustime.mta.info/m/index?q=${value}`;
     try{
-        const response = await fetch(proxy+timeUrl, {cache: 'reload'}); // fetch site
+        const response = await fetch(proxy+timeUrl, {cache: 'reload', headers: {"Access-Control-Max-Age": 0}}); // fetch site
         const data = await response.text();
         htmlData(data, instance);
         if(response.status != 200){
@@ -51,15 +51,12 @@ DOMSelect.stops[1].addEventListener("input", function(){
 }
 );
 
-DOMSelect.refresh.addEventListener("click", function(event){
+/* DOMSelect.refresh.addEventListener("click", function(event){
      event.preventDefault();
      DOMSelect.timeRes[0].innerHTML = '';
      DOMSelect.timeRes[1].innerHTML = '';
-    if(DOMSelect.stops[0] != ''){
-        insertTime(DOMSelect.stops[0].value, 0);
-        }
-    if(DOMSelect.stops[1] != ''){
-        insertTime(DOMSelect.stops[1].value, 1);
-        }
+    insertTime(DOMSelect.stops[0].value, 0);
+     insertTime(DOMSelect.stops[1].value, 1);
 }
 );
+ */

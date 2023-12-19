@@ -47,7 +47,7 @@ async function busDirection(bus, instance){ // fetch stops api
         const response = await fetch(proxy+direction);
         const data = await response.json();
         const directions = data.searchResults.matches[0].directions;
-        DOMSelect.direction[instance].innerHTML = `<option value="">select direction</option>`;
+        DOMSelect.direction[instance].innerHTML = '';
         directions.forEach(element => {
             DOMSelect.direction[instance].insertAdjacentHTML("beforeend", `
     <option value="${element.directionId}">${element.destination}</option>
@@ -61,15 +61,14 @@ async function busDirection(bus, instance){ // fetch stops api
         console.log(error, "API Error");
     }
 }
-
-DOMSelect.direction[0].addEventListener("input", function(){
+DOMSelect.options[0].addEventListener("input", function(){
     if(DOMSelect.options[0] != ''){
     busDirection(DOMSelect.options[0].value, 0);
     }
 }
 );
 
-DOMSelect.direction[1].addEventListener("input", function(){
+DOMSelect.options[1].addEventListener("input", function(){
     if(DOMSelect.options[1] != ''){
     busDirection(DOMSelect.options[1].value, 1);
     }
