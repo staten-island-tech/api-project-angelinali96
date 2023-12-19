@@ -22,6 +22,7 @@ function htmlData(data, instance){
         const list = parser.parseFromString(data, "text/html");
         const busTimes = list.querySelectorAll('.directionAtStop'); // parse fetched site
         const refreshTime = list.querySelector('#refresh a strong');
+        console.log(refreshTime); // testing if detect refresh button click works
         DOMSelect.timeRes[instance].innerHTML = `<strong>${refreshTime.textContent}</strong>`;
         busTimes.forEach(function(item){
             item.childNodes.forEach(function(item){
