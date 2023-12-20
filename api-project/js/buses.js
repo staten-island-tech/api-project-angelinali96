@@ -30,26 +30,27 @@ function fetchToHtml(data){
 // display results from options
 function optionList(res){
     let list = res.querySelector('a').href.split("#", 2);
-    DOMSelect.options[0].insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[0].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` //insert bus routes in 1
     );
-    DOMSelect.options[1].insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[1].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` // 2
     ); 
 }
 
-/* async function busDirection(bus){ // fetch stops api
+// this isnt working properly but the fetch is working
+async function busDirection(bus, instance){ // fetch stops api
     try{
         const direction = `https://bt.mta.info/api/search?q=${bus}`;
         const response = await fetch(proxy+direction);
         const data = await response.json();
-        console.log(data.searchResults.matches[0].directions);
-        DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
-        stops.forEach(element => {
-            DOMSelect.stops[instance].insertAdjacentHTML("beforeend", `
-    <option value="${element.id.replace('MTA_', '')}">${element.name}</option>
+        const directions = data.searchResults.matches[0].directions;
+        DOMSelect.direction[instance].innerHTML = '';
+        directions.forEach(element => {
+            DOMSelect.direction[instance].insertAdjacentHTML("beforeend", `
+    <option value="${element.directionId}">${element.destination}</option>
     ` 
     );
         });
@@ -60,18 +61,17 @@ function optionList(res){
         console.log(error, "API Error");
     }
 }
-
-busDirection('B1');
-DOMSelect.stops[0].addEventListener("input", function(){
-    if(DOMSelect.stops[0] != ''){
-    insertTime(DOMSelect.stops[0].value, 0);
+DOMSelect.options[0].addEventListener("input", function(){
+    if(DOMSelect.options[0] != ''){
+    busDirection(DOMSelect.options[0].value, 0);
     }
 }
 );
 
-DOMSelect.stops[1].addEventListener("input", function(){
-    if(DOMSelect.stops[1] != ''){
-    insertTime(DOMSelect.stops[1].value, 1);
+DOMSelect.options[1].addEventListener("input", function(){
+    if(DOMSelect.options[1] != ''){
+    busDirection(DOMSelect.options[1].value, 1);
     }
 }
-); */
+);
+

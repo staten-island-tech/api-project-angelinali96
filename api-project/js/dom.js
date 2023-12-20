@@ -8,7 +8,7 @@ const DOMSelect = {
     timeRes: [xpathDom('//*[@id="time1"]'), xpathDom('//*[@id="time2"]')],
     submitBus: xpathDom('//*[@id="busSubmit"]'),
     themer: xpathDom('//input[@type="checkbox"]'),
-    refresh: xpathDom('//button[@class="refresh"]'),
+    refresh: xpathDom('//input[@class="refresh"]'),
 };
 
 function xpathDom(path) { // i like xpath i will not be using queryselector or getelementbyid again and u cant tell me otherwise

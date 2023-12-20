@@ -5,9 +5,10 @@ import './stops';
 const proxy = 'https://corsproxy.io/?';
 
 async function insertTime(value, instance){
-    const timeUrl = `https://bustime.mta.info/m/index?q=${value}`;
+    const currentTime = Date.now();
+    const timeUrl = `https://bustime.mta.info/m/index?q=${value}&cacheBreaker=${currentTime}`;
     try{
-        const response = await fetch(proxy+timeUrl); // fetch site
+        const response = await fetch(proxy+timeUrl, {cache: 'reload', headers: {"Access-Control-Max-Age": 0}}); // fetch site
         const data = await response.text();
         htmlData(data, instance);
         if(response.status != 200){
@@ -21,7 +22,9 @@ function htmlData(data, instance){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busTimes = list.querySelectorAll('.directionAtStop'); // parse fetched site
-        DOMSelect.timeRes[instance].innerHTML = '';
+        const refreshTime = list.querySelector('#refresh a strong');
+        console.log(refreshTime); // testing if detect refresh button click works
+        DOMSelect.timeRes[instance].innerHTML = `<strong>${refreshTime.textContent}</strong>`;
         busTimes.forEach(function(item){
             item.childNodes.forEach(function(item){
                 DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`)
@@ -31,7 +34,6 @@ function htmlData(data, instance){
     busHeaders.forEach(function(item){
         if(item.innerText.includes('\u00A0') == true){
             item.className = "busHead";
-            console.log(item);
         }
         
     });
@@ -52,12 +54,8 @@ DOMSelect.stops[1].addEventListener("input", function(){
 );
 
 DOMSelect.refresh.addEventListener("click", function(event){
-    event.preventDefault();
-    if(DOMSelect.stops[0] != ''){
-        insertTime(DOMSelect.stops[0].value, 0);
-        }
-    if(DOMSelect.stops[1] != ''){
-        insertTime(DOMSelect.stops[1].value, 1);
-        }
+     event.preventDefault();
+    insertTime(DOMSelect.stops[0].value, 0);
+     insertTime(DOMSelect.stops[1].value, 1);
 }
 );

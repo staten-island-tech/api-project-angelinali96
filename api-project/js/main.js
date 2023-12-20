@@ -4,7 +4,6 @@ import './buses';
 import './stops';
 import './busTime';
 import { DOMSelect } from './dom';
-import {xpathDom} from './dom';
 
 DOMSelect.themer.addEventListener("click", function(){ // theme
     if(DOMSelect.themer.checked === true){
@@ -14,3 +13,4 @@ DOMSelect.themer.addEventListener("click", function(){ // theme
     }
 }
 );
+
