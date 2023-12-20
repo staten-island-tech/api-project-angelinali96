@@ -30,11 +30,11 @@ function fetchToHtml(data){
 // display results from options
 function optionList(res){
     let list = res.querySelector('a').href.split("#", 2);
-    DOMSelect.options[0].insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[0].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` //insert bus routes in 1
     );
-    DOMSelect.options[1].insertAdjacentHTML("afterbegin", `
+    DOMSelect.options[1].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` // 2
     ); 
@@ -74,3 +74,4 @@ DOMSelect.options[1].addEventListener("input", function(){
     }
 }
 );
+

@@ -5,7 +5,8 @@ import './stops';
 const proxy = 'https://corsproxy.io/?';
 
 async function insertTime(value, instance){
-    const timeUrl = `https://bustime.mta.info/m/index?q=${value}`;
+    const currentTime = Date.now();
+    const timeUrl = `https://bustime.mta.info/m/index?q=${value}&cacheBreaker=${currentTime}`;
     try{
         const response = await fetch(proxy+timeUrl, {cache: 'reload', headers: {"Access-Control-Max-Age": 0}}); // fetch site
         const data = await response.text();
@@ -52,12 +53,9 @@ DOMSelect.stops[1].addEventListener("input", function(){
 }
 );
 
-/* DOMSelect.refresh.addEventListener("click", function(event){
+DOMSelect.refresh.addEventListener("click", function(event){
      event.preventDefault();
-     DOMSelect.timeRes[0].innerHTML = '';
-     DOMSelect.timeRes[1].innerHTML = '';
     insertTime(DOMSelect.stops[0].value, 0);
      insertTime(DOMSelect.stops[1].value, 1);
 }
 );
- */
