@@ -26,6 +26,10 @@ form{
 .result{
     width: 49%;
 }
+summary{
+  font-size: var(--h5);
+  color: rgb(250, 215, 215);
+}
 h1{
     font-size: var(--h1);
     text-align: center;
