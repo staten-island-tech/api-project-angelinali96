@@ -6,8 +6,8 @@ const proxy = 'https://corsproxy.io/?'; // ik we werent supposed to use cors api
 
 async function getApi(stop, direction, instance){ // fetch stops api
     try{
-        const stopsApi = `https://bustime.mta.info/api/stops-on-route-for-direction?routeId=MTA+NYCT_${stop}&directionId=${direction}`;
-        const response = await fetch(proxy+stopsApi);
+        const stopsApi = `https://bustime.mta.info/api/stops-on-route-for-direction?routeId=MTA+NYCT_${stop.replace(/\-SBS/, '%2B')}&directionId=${direction}`;
+        const response = await fetch(proxy+encodeURI(stopsApi));
         const data = await response.json();
         const stops = data.stops;
         DOMSelect.stops[instance].innerHTML = `<option value="">select stop</option>`;
