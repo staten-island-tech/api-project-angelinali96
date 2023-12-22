@@ -9,6 +9,7 @@ const DOMSelect = {
     submitBus: xpathDom('//*[@id="busSubmit"]'),
     themer: xpathDom('//input[@type="checkbox"]'),
     refresh: xpathDom('//input[@class="refresh"]'),
+    filterbtn: [xpathDom('//details/div/button[contains(id, "1")]'), xpathDom('//details/div/button[contains(id, "2")]')],
   };
 
 function xpathDom(path) { // i like xpath i will not be using queryselector or getelementbyid again and u cant tell me otherwise

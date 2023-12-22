@@ -23,7 +23,9 @@ form{
     flex-wrap: wrap;
     align-content: center;
 }
-.result{
+.result,
+.busselect1,
+.busselect2{
     width: 49%;
 }
 summary{
