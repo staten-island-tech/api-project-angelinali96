@@ -26,7 +26,7 @@ function htmlData(data, instance){
         DOMSelect.timeRes[instance].innerHTML = `<strong>${refreshTime.textContent}</strong>`;
         busTimes.forEach(function(item){
             item.childNodes.forEach(function(item){
-                DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`)
+                DOMSelect.timeRes[instance].insertAdjacentHTML("beforeend", `<p>${item.textContent}</p>`);
             });
         });
     const busHeaders = document.querySelectorAll('p');
