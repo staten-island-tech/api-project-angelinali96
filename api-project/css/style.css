@@ -23,7 +23,9 @@ form{
     flex-wrap: wrap;
     align-content: center;
 }
-.result{
+.result,
+.busselect1,
+.busselect2{
     width: 49%;
 }
 summary{
@@ -204,3 +206,7 @@ button:focus-visible {
   .slider.round:before {
     border-radius: 50%;
   }
+.subhead{
+  font-size: var(--h4);
+  text-align: center;
+}

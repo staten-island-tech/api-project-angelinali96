@@ -8,40 +8,42 @@
   </head>
   <body>
     <div id="app">
+      <nav>
       <h1>Bustime Comparison</h1>
-      <h5>made for those who can go home on multiple bus routes</h5>
-      <div class="themer">
-        <h3>dark mode</h3>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
-      <h3>rainbow mode</h3>
-      </div>
+      <p class="subhead">made for those who can go home on multiple bus routes</p>
+    </nav>
       <form action="submit" id="busSubmit">
-        <select name="Select Bus" id="buses1">
+        <div class="busselect1">
+          
+        <select name="Select Bus1" id="buses1" title="select first bus route">
           <option value="">select bus</option>
         </select>
-        <select name="Select Direction" id="direction1" class="direction">
+        <select name="Select Direction1" id="direction1" class="direction" title="select first bus direction">
           <option value="">select direction</option>
         </select>
-        <select name="Select Bus" id="buses2">
+      </div>
+      <div class="busselect2">
+        
+        <select name="Select Bus2" id="buses2" title="select second bus route">
           <option value="">select bus</option>
         </select>
-        <select name="Select Direction" id="direction2" class="direction">
+        <select name="Select Direction2" id="direction2" class="direction" title="select direction for second bus">
           <option value="">select direction</option>
         </select>
-        <input type="submit">
+      </div>
+        <input type="submit" value="submit">
       </form>
-      <input class="refresh" type="button" value="refresh"></input>
+      <input class="refresh" type="button" value="refresh"/>
       <div class="results">
       <div class="result" id="bus1">
-        <select name="Select Stop" id="stops1">
+        <select name="Select Stop1" id="stops1" title="select stop for first bus">
+          <option value="">select stop after route selection</option>
         </select>
         <div class="card" id="time1"></div>
       </div>
       <div class="result" id="bus2">
-        <select name="Select Stop" id="stops2">
+        <select name="Select Stop2" id="stops2" title="select stop for second bus">
+          <option value="">select stop after route selection</option>
         </select>
         <div class="card" id="time2"></div>
       </div>
