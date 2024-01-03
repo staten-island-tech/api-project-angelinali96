@@ -24,12 +24,17 @@ function fetchToHtml(data){
     const parser = new DOMParser();
         const list = parser.parseFromString(data, "text/html");
         const busList = list.querySelectorAll('ul.routeList li'); // parse fetched site
+        
         busList.forEach(item => optionList(item)); // for each parsed node
+        
 }
+
 
 // display results from options
 function optionList(res){
     let list = res.querySelector('a').href.split("#", 2);
+    busListName.push(res.innerText);
+    busListVal.push(list[1]);
     DOMSelect.options[0].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` //insert bus routes in 1
@@ -39,8 +44,10 @@ function optionList(res){
     ` // 2
     ); 
 }
+const busListName = [];
+const busListVal = [];
 
-// this isnt working properly but the fetch is working
+
 async function busDirection(bus, instance){ // fetch stops api
     try{
         const direction = `https://bt.mta.info/api/search?q=${bus}`;
