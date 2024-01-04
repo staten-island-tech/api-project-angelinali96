@@ -26,15 +26,30 @@ function fetchToHtml(data){
         const busList = list.querySelectorAll('ul.routeList li'); // parse fetched site
         
         busList.forEach(item => optionList(item)); // for each parsed node
-        
-}
+        console.log(DOMSelect.filterbtn);
+    }
+        // DOMSelect.filterbtn.forEach((item) => item.addEventListener("click", hideBusChoices(item)));
 
+    function hideBusChoices(button){
+        DOMSelect.options[0].querySelectorAll('option').forEach(function(item){
+            /* if(item.innerText.includes("all") == true){
+
+            }else  */if(item.innerText.includes(button.id) == true){
+            item.hidden = false;
+            item.disabled = false;
+        }else if(item.innerText.includes(button.id) == false){
+            item.hidden = true;
+            item.disabled = true;
+        }
+    });
+
+    }
 
 // display results from options
 function optionList(res){
     let list = res.querySelector('a').href.split("#", 2);
-    busListName.push(res.innerText);
-    busListVal.push(list[1]);
+    // busListName.push(res.innerText);
+    // busListVal.push(list[1]);
     DOMSelect.options[0].insertAdjacentHTML("beforeend", `
     <option value="${list[1]}">${res.innerText}</option>
     ` //insert bus routes in 1
@@ -44,8 +59,9 @@ function optionList(res){
     ` // 2
     ); 
 }
-const busListName = [];
-const busListVal = [];
+// const busListName = [];
+// const busListVal = [];
+
 
 
 async function busDirection(bus, instance){ // fetch stops api
