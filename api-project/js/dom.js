@@ -9,7 +9,7 @@ const DOMSelect = {
     submitBus: xpathDom('//*[@id="busSubmit"]'),
     themer: xpathDom('//input[@type="checkbox"]'),
     refresh: xpathDom('//input[@class="refresh"]'),
-    filterbtn: document.querySelectorAll('.filter button'),
+    filterbtn: [document.querySelectorAll('.busselect1 details .filter button'), document.querySelectorAll('.busselect2 details .filter button')],
   };
 
   function xpathDom(path) {

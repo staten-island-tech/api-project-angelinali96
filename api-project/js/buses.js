@@ -28,21 +28,24 @@ function fetchToHtml(data){
         busList.forEach(item => optionList(item)); // for each parsed node
         console.log(DOMSelect.filterbtn);
     }
-        // DOMSelect.filterbtn.forEach((item) => item.addEventListener("click", hideBusChoices(item)));
+        DOMSelect.filterbtn[0].forEach((item) => item.addEventListener("click", function(){hideBusChoices(0)}));
+        DOMSelect.filterbtn[1].forEach((item) => item.addEventListener("click", function(){hideBusChoices(1)}));
 
-    function hideBusChoices(button){
-        DOMSelect.options[0].querySelectorAll('option').forEach(function(item){
+    function hideBusChoices(val){
+        DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
             /* if(item.innerText.includes("all") == true){
 
-            }else  */if(item.innerText.includes(button.id) == true){
+            }else  
+            if(item.innerText.includes(button.id) == true){
             item.hidden = false;
             item.disabled = false;
         }else if(item.innerText.includes(button.id) == false){
             item.hidden = true;
             item.disabled = true;
-        }
+        }*/
+        item.hidden = true;
+        item.disabled = true;
     });
-
     }
 
 // display results from options
