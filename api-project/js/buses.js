@@ -35,20 +35,36 @@ function fetchToHtml(data){
         const filterVal = item.value;
         if(filterVal === 'all'){
             displayBusChoices(val);
-        }else if(filterVal === 'B' || 'BM' || 'Bx' || 'BxM' || 'M' || 'Q' || 'QM' || 'S' || 'SIM' || 'X' || 'Shuttle Bus'){
+        }else if(filterVal === 'B' || 'BM' || 'Bx' || 'BxM' || 'M' || 'Q' || 'QM' || 'S' || 'SIM' || 'X'){
             hideBusChoices(filterVal, val);
+        }else if(filterVal === 'shuttle'){
+        DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
+                if(item.innerText.includes('Shuttle Bus') === true){
+                    item.hidden = false;
+                    item.disabled = false;
+                }else if(item.innerText.includes('Shuttle Bus') === false){
+                    item.hidden = true;
+                    item.disabled = true;
+                }
+        });
         }
         item.disabled = true;
     }
 
     function hideBusChoices(filterval, val){
         DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
-        if(item.value[0] === filterval){
-            item.hidden = false;
-        item.disabled = false;
+        if(item.value[0] === filterval[0]){
+            if(item.value.includes(filterval) === true){
+                item.hidden = false;
+                item.disabled = false;
+            }else if(item.value.includes(filterval) === false){
+                item.hidden = true;
+                item.disabled = true;
+            }
+            
     }else if(item.value[0] != filterval){
         item.hidden = true;
-    item.disabled = true;
+        item.disabled = true;
 }
     });
     }
