@@ -26,26 +26,37 @@ function fetchToHtml(data){
         const busList = list.querySelectorAll('ul.routeList li'); // parse fetched site
         
         busList.forEach(item => optionList(item)); // for each parsed node
-        console.log(DOMSelect.filterbtn);
     }
-        DOMSelect.filterbtn[0].forEach((item) => item.addEventListener("click", function(){hideBusChoices(0)}));
-        DOMSelect.filterbtn[1].forEach((item) => item.addEventListener("click", function(){hideBusChoices(1)}));
+        DOMSelect.filterbtn[0].forEach((item) => item.addEventListener("click", function(){busFilter(item, 0)}));
+        DOMSelect.filterbtn[1].forEach((item) => item.addEventListener("click", function(){busFilter(item, 1)}));
 
-    function hideBusChoices(val){
+    function busFilter(item, val){
+        DOMSelect.filterbtn[val].forEach(item => item.disabled = false);
+        const filterVal = item.value;
+        if(filterVal === 'all'){
+            displayBusChoices(val);
+        }else if(filterVal === 'B' || 'BM' || 'Bx' || 'BxM' || 'M' || 'Q' || 'QM' || 'S' || 'SIM' || 'X' || 'Shuttle Bus'){
+            hideBusChoices(filterVal, val);
+        }
+        item.disabled = true;
+    }
+
+    function hideBusChoices(filterval, val){
         DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
-            /* if(item.innerText.includes("all") == true){
-
-            }else  
-            if(item.innerText.includes(button.id) == true){
+        if(item.value[0] === filterval){
+            item.hidden = false;
+        item.disabled = false;
+    }else if(item.value[0] != filterval){
+        item.hidden = true;
+    item.disabled = true;
+}
+    });
+    }
+    function displayBusChoices(val){
+        DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
             item.hidden = false;
             item.disabled = false;
-        }else if(item.innerText.includes(button.id) == false){
-            item.hidden = true;
-            item.disabled = true;
-        }*/
-        item.hidden = true;
-        item.disabled = true;
-    });
+        });
     }
 
 // display results from options
