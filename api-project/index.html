@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NYC MTA Bustime Comparison</title>
@@ -12,28 +12,60 @@
       <h1>Bustime Comparison</h1>
       <p class="subhead">made for those who can go home on multiple bus routes</p>
     </nav>
+    <div class="filters">
+      <div class="busselect1">
+          <details>
+            <summary>filter buses</summary>
+          <div class="filter">
+            <button id="all1" value="all">all</button>
+            <button id="B1" value="B">B</button>
+            <button id="BM1" value="BM">BM</button>
+            <button id="Bx1" value="Bx">Bx</button>
+            <button id="BxM1" value="BxM">BxM</button>
+            <button id="M1" value="M">M</button>
+            <button id="Q1" value="Q">Q</button>
+            <button id="QM1" value="QM">QM</button>
+            <button id="S1" value="S">S</button>
+            <button id="SIM1" value="SIM">SIM</button>
+            <button id="X1" value="X">X</button>
+          </div>
+        </details>
+      </div>
+      <div class="busselect2">
+        <details>
+          <summary>filter buses</summary>
+        <div class="filter">
+          <button id="all2" value="all">all</button>
+          <button id="B2" value="B">B</button>
+          <button id="BM2" value="BM">BM</button>
+          <button id="Bx2" value="Bx">Bx</button>
+          <button id="BxM2" value="BxM">BxM</button>
+          <button id="M2" value="M">M</button>
+          <button id="Q2" value="Q">Q</button>
+          <button id="QM2" value="QM">QM</button>
+          <button id="S2" value="S">S</button>
+          <button id="SIM2" value="SIM">SIM</button>
+          <button id="X2" value="X">X</button>
+        </div>
+      </details>
+      </div>
+    </div>
       <form action="submit" id="busSubmit">
-        <div class="busselect1">
-          
         <select name="Select Bus1" id="buses1" title="select first bus route">
           <option value="">select bus</option>
         </select>
         <select name="Select Direction1" id="direction1" class="direction" title="select first bus direction">
           <option value="">select direction</option>
         </select>
-      </div>
-      <div class="busselect2">
-        
-        <select name="Select Bus2" id="buses2" title="select second bus route">
+      <select name="Select Bus2" id="buses2" title="select second bus route">
           <option value="">select bus</option>
         </select>
         <select name="Select Direction2" id="direction2" class="direction" title="select direction for second bus">
           <option value="">select direction</option>
         </select>
-      </div>
         <input type="submit" value="submit">
       </form>
-      <input class="refresh" type="button" value="refresh"/>
+      <input class="refresh" type="button" value="refresh ⟳">
       <div class="results">
       <div class="result" id="bus1">
         <select name="Select Stop1" id="stops1" title="select stop for first bus">
