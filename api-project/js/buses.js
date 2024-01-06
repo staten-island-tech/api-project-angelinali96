@@ -37,16 +37,6 @@ function fetchToHtml(data){
             displayBusChoices(val);
         }else if(filterVal === 'B' || 'BM' || 'Bx' || 'BxM' || 'M' || 'Q' || 'QM' || 'S' || 'SIM' || 'X'){
             hideBusChoices(filterVal, val);
-        }else if(filterVal === 'shuttle'){
-        DOMSelect.options[val].querySelectorAll('option').forEach(function(item){
-                if(item.innerText.includes('Shuttle Bus') === true){
-                    item.hidden = false;
-                    item.disabled = false;
-                }else if(item.innerText.includes('Shuttle Bus') === false){
-                    item.hidden = true;
-                    item.disabled = true;
-                }
-        });
         }
         item.disabled = true;
     }
